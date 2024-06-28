@@ -19,3 +19,8 @@ yarn install
 ```sh
 yarn run start
 ```
+
+### パッケージ化
+```sh
+yarn run build
+```
