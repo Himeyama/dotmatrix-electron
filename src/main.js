@@ -27,6 +27,16 @@ ipcMain.on('exit', (_event) => {
     }
 })
 
+ipcMain.on('get-comports', (event) => {
+    SerialPort.list().then((ports) => {
+        portList = []
+        ports.forEach((port) => {
+            portList.push({path: port.path, manufacturer: port.manufacturer})
+        });
+        event.sender.send('portPath', portList)
+    });
+})
+
 
 ipcMain.on('send-font', (_event, codes) => {
     const port = new SerialPort({

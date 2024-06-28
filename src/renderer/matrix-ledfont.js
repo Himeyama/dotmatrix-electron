@@ -90,8 +90,13 @@ const fontDraw4 = (txt) => {
     const ctx = canvas.getContext("2d", {alpha: true});
     ctx.clearRect(0, 0, 64, 16);
 
+    const fontType = parseInt(document.getElementById("select-font").currentValue)
+
     // Set font properties
     ctx.font = "16px 'MS Gothic'";
+    if(fontType == 2)
+        ctx.font = "16px 'MS Mincho'";
+
     ctx.fillStyle = "black"; // Text color
 
     // Draw the text
@@ -144,7 +149,11 @@ document.getElementById("exit").addEventListener("click", () => {
     api.exit()
 })
 
+// テーブルを作成
 createTable()
+
+// COM ポートを取得
+api.getComports()
 
 document.getElementById("char-input").addEventListener("change", (e) => {
     multiString()

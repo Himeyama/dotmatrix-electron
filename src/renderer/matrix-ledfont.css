@@ -1,3 +1,7 @@
+#led-font-table {
+    text-align: center;
+}
+
 #led-font-table table {
     border-collapse: collapse;
     background-color: #000;
@@ -34,10 +38,17 @@
 #inputs {
     margin: 8px 0 0 0;
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr auto auto auto;
+}
+
+#select-font {
+    margin-left: 8px;
+}
+
+#select-comport {
+    margin-left: 8px;
 }
 
 #send-button {
     margin-left: 8px;
-    width: 160px;
 }

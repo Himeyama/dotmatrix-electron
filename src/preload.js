@@ -15,5 +15,20 @@ contextBridge.exposeInMainWorld('sendFont', {
 contextBridge.exposeInMainWorld('api', {
   exit: () => {
     ipcRenderer.send('exit')
+  },
+  getComports: () => {
+    ipcRenderer.send('get-comports')
   }
 })
+
+ipcRenderer.on('portPath', (_event, paths) => {
+  let selectElement = document.getElementById('select-comport');
+  let i = 1;
+  for(let path of paths){
+    const newOption = document.createElement('fluent-option');
+    const com = `${path.path} (${path.manufacturer})`
+    newOption.value = '' + i;
+    newOption.textContent = com;
+    selectElement.appendChild(newOption);
+  }
+});
