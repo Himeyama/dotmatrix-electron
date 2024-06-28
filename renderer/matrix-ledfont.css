@@ -27,11 +27,17 @@
     display: none;
 }
 
-#char-input{
-    margin-top: 8px;
+#char-input {
+    grid-column: 1fr;
 }
 
-#char-input {
+#inputs {
     margin: 8px 0 0 0;
-    grid-column: 1fr;
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+#send-button {
+    margin-left: 8px;
+    width: 160px;
 }

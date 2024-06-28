@@ -26,7 +26,7 @@
       <fluent-menu>
         <fluent-menu-item>開く</fluent-menu-item>
         <fluent-divider></fluent-divider>
-        <fluent-menu-item>終了</fluent-menu-item>
+        <fluent-menu-item id="exit">終了</fluent-menu-item>
       </fluent-menu>
     </div>
 
@@ -40,7 +40,10 @@
   <main>
     <div id="led-font-table"></div>
     
-    <fluent-text-field placeholder="文字" id="char-input"></fluent-text-field>
+    <div id="inputs">
+      <fluent-text-field placeholder="テキスト" id="char-input"></fluent-text-field>
+      <fluent-button id="send-button" appearance="accent">送信</fluent-button>
+    </div>
 
     <canvas width="64" height="16" id="myCanvas"></canvas>
 

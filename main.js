@@ -21,6 +21,12 @@ const createWindow = () => {
     win.loadFile(path.join(__dirname, 'renderer', 'index.html'))
 }
 
+ipcMain.on('exit', (_event) => {
+    if (process.platform !== 'darwin') {
+        app.quit()
+    }
+})
+
 
 ipcMain.on('send-font', (_event, codes) => {
     const port = new SerialPort({

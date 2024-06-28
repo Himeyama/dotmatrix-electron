@@ -1,7 +1,7 @@
 const getArduinoCodeCalc = (k) => {
     let dots1 = ""
     let dots2 = ""
-    for(let j = 1; j <= 15; j++){
+    for(let j = 1; j <= 16; j++){
         let col = 0
         for(let i = 8; i > 0; i--){
             const dot = document.getElementById(`p${i}-${j + (k * 16)}`);            
@@ -19,11 +19,10 @@ const getArduinoCodeCalc = (k) => {
         dots1 += `${col},`
     }
 
-    for(let j = 1; j <= 15; j++){
+    for(let j = 1; j <= 16; j++){
         let col = 0
         for(let i = 16; i > 8; i--){
             const dot = document.getElementById(`p${i}-${j + (k * 16)}`);            
-            // console.log(dot)
             col <<= 1
             if(dot.classList.contains("IsOn")){
                 col |= 1
@@ -39,36 +38,51 @@ const getArduinoCode = (k) => {
     code12 = getArduinoCodeCalc(k);
     const dots1 = code12[0]
     const dots2 = code12[1]
-    const charDots = "15," + dots1 + "15," + dots2.slice(0, -1)
+    const charDots = "16," + dots1 + "16," + dots2.slice(0, -1)
     return charDots
 }
 
-
-var table = document.createElement('table');
-for (var i = 1; i <= 16; i++) {
-    var tr = document.createElement('tr');
-    for (var j = 1; j <= 64; j++) {
-        var td = document.createElement('td');
-        var id = 'p' + i + "-" +  j;
-        td.id = id;
-        tr.appendChild(td);
-    }
-    table.appendChild(tr);
+const sendDotInformation = () => {
+    let codes = []
+    for(let i = 0; i < 4; i++)
+        codes.push(getArduinoCode(i))
+    const concatCodes = codes.join(",")
+    sendFont.sendFont(concatCodes)
 }
-document.getElementById('led-font-table').appendChild(table);
 
-const dots = document.getElementById("led-font-table").getElementsByTagName("td")
+const multiString = () => {
+    const txt = document.getElementById("char-input").value;
+    fontDraw4(txt)
+    sendDotInformation()
+}
 
-for(const dot of dots){
-    dot.addEventListener("click", (e) => {
-        const element = e.target
-        if(element.classList.contains("IsOn")){
-            element.classList.remove("IsOn")
-        }else{
-            element.classList.add("IsOn")
+const createTable = () => {
+    let table = document.createElement('table');
+    for (let i = 1; i <= 16; i++) {
+        let tr = document.createElement('tr');
+        for (let j = 1; j <= 64; j++) {
+            let td = document.createElement('td');
+            let id = 'p' + i + "-" +  j;
+            td.id = id;
+            tr.appendChild(td);
         }
-        // getArduinoCode()
-    })
+        table.appendChild(tr);
+    }
+    document.getElementById('led-font-table').appendChild(table);
+
+    const dots = document.getElementById("led-font-table").getElementsByTagName("td")
+
+    for(const dot of dots){
+        dot.addEventListener("click", (e) => {
+            const element = e.target
+            if(element.classList.contains("IsOn")){
+                element.classList.remove("IsOn")
+            }else{
+                element.classList.add("IsOn")
+            }
+            sendDotInformation()
+        })
+    }
 }
 
 const fontDraw4 = (txt) => {
@@ -126,20 +140,16 @@ const fontDraw = (char, k) => {
     }
 }
 
-const multiString = () => {
-    const txt = document.getElementById("char-input").value;
-    let codes = []
-    fontDraw4(txt)
-    for(let i = 0; i < 4; i++)
-        codes.push(getArduinoCode(i))
-    const concatCodes = codes.join(",")
-    sendFont.sendFont(concatCodes)
-}
+document.getElementById("exit").addEventListener("click", () => {
+    api.exit()
+})
+
+createTable()
 
 document.getElementById("char-input").addEventListener("change", (e) => {
-    // fontDraw(e.target.value)
-    // getArduinoCode()
     multiString()
 })
 
-
+document.getElementById("send-button").addEventListener("click", () => {
+    multiString()
+})

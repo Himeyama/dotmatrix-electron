@@ -11,3 +11,9 @@ contextBridge.exposeInMainWorld('sendFont', {
     ipcRenderer.send('send-font', codes)
   }
 })
+
+contextBridge.exposeInMainWorld('api', {
+  exit: () => {
+    ipcRenderer.send('exit')
+  }
+})
