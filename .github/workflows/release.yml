@@ -3,7 +3,7 @@ name: Publish an application installer
 on:
   push:
     tags:
-      - "v*"
+      - "*"
 
 jobs:
   build:
