@@ -38,9 +38,9 @@ ipcMain.on('get-comports', (event) => {
 })
 
 
-ipcMain.on('send-font', (_event, codes) => {
+ipcMain.on('send-font', (_event, codes, com) => {
     const port = new SerialPort({
-        path: 'COM3',
+        path: com,
         baudRate: 9600
     })
 

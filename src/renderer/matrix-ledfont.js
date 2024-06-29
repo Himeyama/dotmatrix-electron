@@ -42,18 +42,30 @@ const getArduinoCode = (k) => {
     return charDots
 }
 
-const sendDotInformation = () => {
+const sendDotInformation = (com) => {
     let codes = []
     for(let i = 0; i < 4; i++)
         codes.push(getArduinoCode(i))
     const concatCodes = codes.join(",")
-    sendFont.sendFont(concatCodes)
+    sendFont.sendFont(concatCodes, com)
+}
+
+const getCom = (text) => {
+    const pattern = /^(COM\d+)\s\(.*?\)$/;
+    const match = text.match(pattern);
+    if (match) {
+        return match[1];
+    } else {
+        return null;
+    }
 }
 
 const multiString = () => {
+    const selectedCom = document.getElementById("select-comport").currentValue
+    const com = getCom(selectedCom)
     const txt = document.getElementById("char-input").value;
     fontDraw4(txt)
-    sendDotInformation()
+    sendDotInformation(com)
 }
 
 const createTable = () => {
@@ -80,7 +92,7 @@ const createTable = () => {
             }else{
                 element.classList.add("IsOn")
             }
-            sendDotInformation()
+            sendDotInformation(com)
         })
     }
 }

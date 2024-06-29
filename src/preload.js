@@ -7,8 +7,8 @@ contextBridge.exposeInMainWorld('versions', {
 })
 
 contextBridge.exposeInMainWorld('sendFont', {
-  sendFont: (codes) => {
-    ipcRenderer.send('send-font', codes)
+  sendFont: (codes, com) => {
+    ipcRenderer.send('send-font', codes, com)
   }
 })
 
