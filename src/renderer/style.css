@@ -2,11 +2,10 @@ body {
     margin: 0;
     user-select: none;
     font-family: "Yu Gothic UI" !important;
-    height: 100vh;
 }
 
 main {
-    margin: 16px;
+    margin: 64px 16px 16px 16px;
 }
 
 .visibled {
@@ -55,6 +54,9 @@ fluent-menu-item {
     display: grid;
     grid-template-columns: auto 1fr;
     background-color: #F8F8F8;
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 .drag-area{
@@ -68,7 +70,7 @@ fluent-menu-item {
 
 #menu-list div{
     display: none;
-    position: absolute;
+    position: fixed;
     z-index: 255;
     top: 44px;
 }
