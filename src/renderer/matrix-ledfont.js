@@ -50,9 +50,10 @@ const sendDotInformation = (com) => {
     sendFont.sendFont(concatCodes, com)
 }
 
-const getCom = (text) => {
+const getCom = () => {
+    const selectedCom = document.getElementById("select-comport").currentValue
     const pattern = /^(COM\d+)\s\(.*?\)$/;
-    const match = text.match(pattern);
+    const match = selectedCom.match(pattern);
     if (match) {
         return match[1];
     } else {
@@ -61,8 +62,7 @@ const getCom = (text) => {
 }
 
 const multiString = () => {
-    const selectedCom = document.getElementById("select-comport").currentValue
-    const com = getCom(selectedCom)
+    const com = getCom()
     const txt = document.getElementById("char-input").value;
     fontDraw4(txt)
     sendDotInformation(com)
@@ -92,6 +92,7 @@ const createTable = () => {
             }else{
                 element.classList.add("IsOn")
             }
+            const com = getCom()
             sendDotInformation(com)
         })
     }
@@ -157,6 +158,16 @@ const fontDraw = (char, k) => {
     }
 }
 
+document.getElementById("select-comport").addEventListener("change", () => {
+    const com = document.getElementById("select-comport").currentValue
+    localStorage.setItem("serial-port", com)
+})
+
+document.getElementById("select-font").addEventListener("change", () => {
+    const font = document.getElementById("select-font").currentValue
+    localStorage.setItem("font", font)
+})
+
 document.getElementById("exit").addEventListener("click", () => {
     api.exit()
 })
@@ -166,6 +177,14 @@ createTable()
 
 // COM ポートを取得
 api.getComports()
+
+// ポート番号設定
+if (localStorage.getItem("serial-port") != null)
+    document.getElementById("select-comport").currentValue = localStorage.getItem("serial-port")
+
+if (localStorage.getItem("font") != null)
+    document.getElementById("select-font").currentValue = localStorage.getItem("font")
+
 
 document.getElementById("char-input").addEventListener("change", (e) => {
     multiString()

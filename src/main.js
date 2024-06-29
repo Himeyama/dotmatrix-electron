@@ -5,8 +5,8 @@ const { SerialPort } = require('serialport');
 
 const createWindow = () => {
     const win = new BrowserWindow({
-        width: 1088,
-        height: 386,
+        width: 1090,
+        height: 390,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js')
         },

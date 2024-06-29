@@ -46,7 +46,7 @@ const registerMenuButton = (list) => {
 }
 
 // メニューボタンの登録
-registerMenuButton(["file", "edit"])
+registerMenuButton(["file"])
 
 // ウィンドウ内をクリックしたとき
 document.body.addEventListener("click", (e) => {
