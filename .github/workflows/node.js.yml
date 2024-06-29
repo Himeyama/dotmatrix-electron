@@ -27,3 +27,7 @@ jobs:
     - run: yarn build
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: dist/*.exe
