@@ -22,7 +22,6 @@ jobs:
       with:
         node-version: 20.15.0
         cache: 'npm'
-    - uses: actions/cache@v2
-      id: yarn-cache
+    - run: npm install -g yarn
     - run: yarn install
     - run: yarn build
