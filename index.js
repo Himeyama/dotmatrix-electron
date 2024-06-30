@@ -8,7 +8,7 @@ const createWindow = () => {
         width: 1090,
         height: 390,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js')
+            preload: path.join(__dirname, 'src/preload.js')
         },
         titleBarStyle: 'hidden',
         titleBarOverlay: {
@@ -18,7 +18,7 @@ const createWindow = () => {
         }
     })
 
-    win.loadFile(path.join(__dirname, 'renderer', 'index.html'))
+    win.loadFile(path.join(__dirname, 'src/renderer', 'index.html'))
 }
 
 ipcMain.on('exit', (_event) => {
