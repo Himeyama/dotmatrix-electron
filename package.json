@@ -23,6 +23,9 @@
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
-    }
+    },
+    "files": [
+      "dist/*.exe"
+    ]
   }
 }

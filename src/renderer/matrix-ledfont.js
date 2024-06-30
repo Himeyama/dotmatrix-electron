@@ -52,7 +52,7 @@ const sendDotInformation = (com) => {
 
 const getCom = () => {
     const selectedCom = document.getElementById("select-comport").currentValue
-    const pattern = /^(COM\d+)\s\(.*?\)$/;
+    const pattern = /^(.*?)\s\(.*?\)$/;
     const match = selectedCom.match(pattern);
     if (match) {
         return match[1];
