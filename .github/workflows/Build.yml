@@ -1,9 +1,9 @@
-name: Publish an application installer
+name: Build
 
 on:
   push:
-    tags:
-      - "*"
+    branches:
+      - mster
 
 jobs:
   build:
