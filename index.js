@@ -5,10 +5,10 @@ const { SerialPort } = require('serialport');
 
 const createWindow = () => {
     const win = new BrowserWindow({
-        width: 1088,
-        height: 386,
+        width: 1090,
+        height: 390,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js')
+            preload: path.join(__dirname, 'src/preload.js')
         },
         titleBarStyle: 'hidden',
         titleBarOverlay: {
@@ -18,13 +18,29 @@ const createWindow = () => {
         }
     })
 
-    win.loadFile(path.join(__dirname, 'renderer', 'index.html'))
+    win.loadFile(path.join(__dirname, 'src/renderer', 'index.html'))
 }
 
+ipcMain.on('exit', (_event) => {
+    if (process.platform !== 'darwin') {
+        app.quit()
+    }
+})
 
-ipcMain.on('send-font', (_event, codes) => {
+ipcMain.on('get-comports', (event) => {
+    SerialPort.list().then((ports) => {
+        portList = []
+        ports.forEach((port) => {
+            portList.push({path: port.path, manufacturer: port.manufacturer})
+        });
+        event.sender.send('portPath', portList)
+    });
+})
+
+
+ipcMain.on('send-font', (_event, codes, com) => {
     const port = new SerialPort({
-        path: 'COM3',
+        path: com,
         baudRate: 9600
     })
 

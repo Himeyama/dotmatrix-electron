@@ -1,18 +1,18 @@
 {
   "name": "azisai",
-  "version": "24.06.15",
-  "main": "main.js",
+  "version": "24.07.03.5",
+  "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-builder --win --x64"
   },
   "devDependencies": {
-    "electron": "^31.0.1"
+    "electron": "^31.0.1",
+    "electron-builder": "24.6.3",
+    "electron-packager": "^17.1.2"
   },
   "dependencies": {
-    "@fluentui/web-components": "^2.6.1",
-    "canvas": "^2.11.2",
-    "mica-electron": "^1.5.10",
     "serialport": "^12.0.0"
   }
 }
