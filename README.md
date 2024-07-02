@@ -1,5 +1,5 @@
 # dotmatrix-electron
-[![Build](https://github.com/Himeyama/dotmatrix-electron/actions/workflows/Build.yml/badge.svg)](https://github.com/Himeyama/dotmatrix-electron/actions/workflows/Build.yml)
+[![Build](https://github.com/Himeyama/dotmatrix-electron/actions/workflows/Build.yml/badge.svg?branch=main)](https://github.com/Himeyama/dotmatrix-electron/actions/workflows/Build.yml)
 
 ![NAKAHARA](docs/screenshot.png)
 
