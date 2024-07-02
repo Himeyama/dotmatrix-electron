@@ -1,6 +1,6 @@
 {
   "name": "azisai",
-  "version": "24.07.03",
+  "version": "24.07.03.2",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
